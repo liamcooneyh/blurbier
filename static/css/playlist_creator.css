@@ -1,0 +1,35 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.track-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.track-list li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    cursor: grab;
+}
+
+.button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.chart-container {
+    width: 80%;
+    height: 20%;
+    margin: 0 auto;
+}
+
+.slider-container {
+    width: 80%;
+    margin: 10px auto;
+    transform: scale(1);
+    transform-origin: 0 0;
+}

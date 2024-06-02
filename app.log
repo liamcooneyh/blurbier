@@ -1,0 +1,58 @@
+2024-06-02 15:31:15,195 [INFO] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-02 15:31:15,195 [INFO] - [33mPress CTRL+C to quit[0m
+2024-06-02 15:31:15,196 [INFO] -  * Restarting with stat
+2024-06-02 15:31:15,629 [WARNING] -  * Debugger is active!
+2024-06-02 15:31:15,633 [INFO] -  * Debugger PIN: 432-155-044
+2024-06-02 15:31:47,854 [INFO] - Redirecting to auth_url: https://accounts.spotify.com/authorize?client_id=your_client_id&response_type=code&redirect_uri=your_redirect_uri&scope=user-top-read
+2024-06-02 15:31:47,855 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:31:47] "[32mGET / HTTP/1.1[0m" 302 -
+2024-06-02 15:32:43,275 [INFO] -  * Detected change in '/home/leem/Desktop/Projects/blurbier/app.py', reloading
+2024-06-02 15:32:43,453 [INFO] -  * Restarting with stat
+2024-06-02 15:32:43,959 [WARNING] -  * Debugger is active!
+2024-06-02 15:32:43,963 [INFO] -  * Debugger PIN: 432-155-044
+2024-06-02 15:34:27,718 [INFO] -  * Detected change in '/home/leem/Desktop/Projects/blurbier/make_key.py', reloading
+2024-06-02 15:34:27,968 [INFO] -  * Restarting with stat
+2024-06-02 15:34:28,605 [WARNING] -  * Debugger is active!
+2024-06-02 15:34:28,610 [INFO] -  * Debugger PIN: 432-155-044
+2024-06-02 15:34:47,765 [INFO] -  * Detected change in '/home/leem/Desktop/Projects/blurbier/app.py', reloading
+2024-06-02 15:34:47,897 [INFO] -  * Restarting with stat
+2024-06-02 15:34:48,410 [WARNING] -  * Debugger is active!
+2024-06-02 15:34:48,415 [INFO] -  * Debugger PIN: 432-155-044
+2024-06-02 15:35:01,634 [INFO] - Redirecting to auth_url: https://accounts.spotify.com/authorize?client_id=your_client_id&response_type=code&redirect_uri=your_redirect_uri&scope=user-top-read
+2024-06-02 15:35:01,635 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:35:01] "[32mGET / HTTP/1.1[0m" 302 -
+2024-06-02 15:37:27,627 [INFO] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-02 15:37:27,627 [INFO] - [33mPress CTRL+C to quit[0m
+2024-06-02 15:37:27,629 [INFO] -  * Restarting with stat
+2024-06-02 15:37:28,090 [WARNING] -  * Debugger is active!
+2024-06-02 15:37:28,094 [INFO] -  * Debugger PIN: 432-155-044
+2024-06-02 15:37:36,333 [INFO] - Redirecting to auth_url: https://accounts.spotify.com/authorize?client_id=d2becfdac6cf40b2a22a2adfee1d8d6a&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A5000%2Fcallback&scope=user-top-read
+2024-06-02 15:37:36,334 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:37:36] "[32mGET / HTTP/1.1[0m" 302 -
+2024-06-02 15:37:36,510 [DEBUG] - cache does not exist at: .cache
+2024-06-02 15:37:36,510 [DEBUG] - sending POST request to https://accounts.spotify.com/api/token with Headers: {'Authorization': 'Basic ZDJiZWNmZGFjNmNmNDBiMmEyMmEyYWRmZWUxZDhkNmE6MjczMzljODNiZDQ5NDNjODgzMzliOWVlMjNhZTk3YzY='} and Body: {'redirect_uri': 'http://127.0.0.1:5000/callback', 'code': 'AQCWoYgY6bNs-JR7H8O0ydzMoUo2SaeRXT_YuwzvRIKLy1hqm13ENpD8-lir2Hjrhr768tWVC4-41VscENbl_ySPi4vtIhcwCWPNHV-5l43dH1Ksdtmd0OsxuwFWCFRuKHp-6-nPmgK1gl2-sjmAn11AW5vgPgj927kS1pyJuEyFAZ8D2Fxk7bCvymZL0QEo7Q', 'grant_type': 'authorization_code', 'scope': 'user-top-read'}
+2024-06-02 15:37:36,514 [DEBUG] - Starting new HTTPS connection (1): accounts.spotify.com:443
+2024-06-02 15:37:36,610 [DEBUG] - https://accounts.spotify.com:443 "POST /api/token HTTP/1.1" 200 None
+2024-06-02 15:37:36,614 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:37:36] "[32mGET /callback?code=AQCWoYgY6bNs-JR7H8O0ydzMoUo2SaeRXT_YuwzvRIKLy1hqm13ENpD8-lir2Hjrhr768tWVC4-41VscENbl_ySPi4vtIhcwCWPNHV-5l43dH1Ksdtmd0OsxuwFWCFRuKHp-6-nPmgK1gl2-sjmAn11AW5vgPgj927kS1pyJuEyFAZ8D2Fxk7bCvymZL0QEo7Q HTTP/1.1[0m" 302 -
+2024-06-02 15:37:36,623 [DEBUG] - Sending GET to https://api.spotify.com/v1/me/ with Params: {} Headers: {'Authorization': 'Bearer BQAKsGF5ySwWzwx01SEKW_KpQfl34SF4SVzHzLdyBGHTy5xlHFkhbnoW0vZWQydedzctPSxKURfoZdLMpkablahbJcvTnn8CY7bJbCnLkOSl6xDcoDUVG8Jwy2HzqaydR75u2YVWdLBnBnq-vxCas4wnP2VPvwmgtEK0GjH3fxrd1w-wYByUHEq3uB_1CZ_qKjVdepcSIIY07A', 'Content-Type': 'application/json'} and Body: None 
+2024-06-02 15:37:36,625 [DEBUG] - Starting new HTTPS connection (1): api.spotify.com:443
+2024-06-02 15:37:36,724 [DEBUG] - https://api.spotify.com:443 "GET /v1/me/ HTTP/1.1" 200 None
+2024-06-02 15:37:36,725 [DEBUG] - RESULTS: {'display_name': 'leem', 'external_urls': {'spotify': 'https://open.spotify.com/user/buywj0arsukdn640vl5jzu0i8'}, 'href': 'https://api.spotify.com/v1/users/buywj0arsukdn640vl5jzu0i8', 'id': 'buywj0arsukdn640vl5jzu0i8', 'images': [{'url': 'https://i.scdn.co/image/ab67757000003b8250fe1199bd4ad197de5465f7', 'height': 64, 'width': 64}, {'url': 'https://i.scdn.co/image/ab6775700000ee8550fe1199bd4ad197de5465f7', 'height': 300, 'width': 300}], 'type': 'user', 'uri': 'spotify:user:buywj0arsukdn640vl5jzu0i8', 'followers': {'href': None, 'total': 16}}
+2024-06-02 15:37:36,725 [INFO] - User information retrieved from Spotify API: {'display_name': 'leem', 'external_urls': {'spotify': 'https://open.spotify.com/user/buywj0arsukdn640vl5jzu0i8'}, 'href': 'https://api.spotify.com/v1/users/buywj0arsukdn640vl5jzu0i8', 'id': 'buywj0arsukdn640vl5jzu0i8', 'images': [{'url': 'https://i.scdn.co/image/ab67757000003b8250fe1199bd4ad197de5465f7', 'height': 64, 'width': 64}, {'url': 'https://i.scdn.co/image/ab6775700000ee8550fe1199bd4ad197de5465f7', 'height': 300, 'width': 300}], 'type': 'user', 'uri': 'spotify:user:buywj0arsukdn640vl5jzu0i8', 'followers': {'href': None, 'total': 16}}
+2024-06-02 15:37:36,735 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:37:36] "GET /profile HTTP/1.1" 200 -
+2024-06-02 15:37:36,932 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:37:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-06-02 15:37:39,033 [DEBUG] - Sending GET to https://api.spotify.com/v1/me/player/recently-played with Params: {'limit': 50, 'after': None, 'before': None} Headers: {'Authorization': 'Bearer BQAKsGF5ySwWzwx01SEKW_KpQfl34SF4SVzHzLdyBGHTy5xlHFkhbnoW0vZWQydedzctPSxKURfoZdLMpkablahbJcvTnn8CY7bJbCnLkOSl6xDcoDUVG8Jwy2HzqaydR75u2YVWdLBnBnq-vxCas4wnP2VPvwmgtEK0GjH3fxrd1w-wYByUHEq3uB_1CZ_qKjVdepcSIIY07A', 'Content-Type': 'application/json'} and Body: None 
+2024-06-02 15:37:39,034 [DEBUG] - Starting new HTTPS connection (1): api.spotify.com:443
+2024-06-02 15:37:39,123 [DEBUG] - https://api.spotify.com:443 "GET /v1/me/player/recently-played?limit=50 HTTP/1.1" 403 None
+2024-06-02 15:37:39,124 [ERROR] - HTTP Error for GET to https://api.spotify.com/v1/me/player/recently-played with Params: {'limit': 50, 'after': None, 'before': None} returned 403 due to Insufficient client scope
+2024-06-02 15:37:39,124 [ERROR] - Error: http status: 403, code:-1 - https://api.spotify.com/v1/me/player/recently-played?limit=50:
+ Insufficient client scope, reason: None
+2024-06-02 15:37:39,125 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:37:39] "[35m[1mGET /recent-tracks HTTP/1.1[0m" 500 -
+2024-06-02 15:37:55,584 [DEBUG] - Sending GET to https://api.spotify.com/v1/me/player/recently-played with Params: {'limit': 50, 'after': None, 'before': None} Headers: {'Authorization': 'Bearer BQAKsGF5ySwWzwx01SEKW_KpQfl34SF4SVzHzLdyBGHTy5xlHFkhbnoW0vZWQydedzctPSxKURfoZdLMpkablahbJcvTnn8CY7bJbCnLkOSl6xDcoDUVG8Jwy2HzqaydR75u2YVWdLBnBnq-vxCas4wnP2VPvwmgtEK0GjH3fxrd1w-wYByUHEq3uB_1CZ_qKjVdepcSIIY07A', 'Content-Type': 'application/json'} and Body: None 
+2024-06-02 15:37:55,586 [DEBUG] - Starting new HTTPS connection (1): api.spotify.com:443
+2024-06-02 15:37:55,683 [DEBUG] - https://api.spotify.com:443 "GET /v1/me/player/recently-played?limit=50 HTTP/1.1" 403 None
+2024-06-02 15:37:55,684 [ERROR] - HTTP Error for GET to https://api.spotify.com/v1/me/player/recently-played with Params: {'limit': 50, 'after': None, 'before': None} returned 403 due to Insufficient client scope
+2024-06-02 15:37:55,684 [ERROR] - Error: http status: 403, code:-1 - https://api.spotify.com/v1/me/player/recently-played?limit=50:
+ Insufficient client scope, reason: None
+2024-06-02 15:37:55,684 [INFO] - 127.0.0.1 - - [02/Jun/2024 15:37:55] "[35m[1mGET /recent-tracks HTTP/1.1[0m" 500 -
+2024-06-02 15:39:38,018 [INFO] -  * Detected change in '/home/leem/Desktop/Projects/blurbier/app.py', reloading
+2024-06-02 15:39:38,200 [INFO] -  * Restarting with stat

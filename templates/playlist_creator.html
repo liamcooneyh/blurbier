@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Creator</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/static/css/playlist_creator.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Playlist Creator</h1>
+        <div class="form-group">
+            <label for="curve-select">Select Curve:</label>
+            <select id="curve-select">
+                <option value="get_party_going">Get Party Going</option>
+                <option value="dark_to_light">Dark to Light</option>
+                <option value="high_energy_peaks">High Energy Peaks</option>
+                <option value="relaxed_evening">Relaxed Evening</option>
+                <option value="build_up_release">Build Up Release</option>
+            </select>
+        </div>
+        <div class="chart-container">
+            <canvas id="curveChart"></canvas>
+        </div>
+        <ul id="track-list" class="track-list"></ul>
+        <div class="button-container">
+            <button id="create-playlist">Create Playlist</button>
+            <button id="back-to-builder">Back to Builder</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="/static/js/playlist_creator.js"></script>
+</body>
+</html>

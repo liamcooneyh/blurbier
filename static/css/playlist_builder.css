@@ -1,0 +1,26 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.slider-container {
+    width: 50%;
+    margin: 10px auto;
+    transform: scale(1);
+    transform-origin: 0 0;
+}
+
+.slider-label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.dataTables_scroll {
+    overflow: auto;
+}
