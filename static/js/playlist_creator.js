@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Ensure the graph respects the specified height
+            maintainAspectRatio: false,
             scales: {
                 x: { type: 'linear', position: 'bottom' },
                 y: { beginAtZero: true, max: 1 }
@@ -67,8 +67,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('create-playlist').addEventListener('click', function() {
         const orderedTracks = [];
         document.querySelectorAll('#track-list li').forEach(li => {
-            orderedTracks.push(JSON.parse(decodeURIComponent(li.dataset.track)));
+            const track = JSON.parse(decodeURIComponent(li.dataset.track));
+            if (track.audio_features.uri) {
+                orderedTracks.push(track);
+            } else {
+                console.error('Track missing URI:', track);
+            }
         });
+
+        console.log('Ordered Tracks:', orderedTracks); // Debugging output
 
         fetch('/create_playlist', {
             method: 'POST',

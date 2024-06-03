@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 artists: track.artists.map(artist => artist.name),
                                 album: track.album.name,
                                 duration: track.duration_ms,
-                                audio_features: track.audio_features
+                                audio_features: track.audio_features,
+                                uri: track.uri  // Ensure URI is included
                             };
 
                             const row = `

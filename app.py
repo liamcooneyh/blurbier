@@ -6,6 +6,11 @@ import os
 from dotenv import load_dotenv
 from functools import wraps
 from datetime import datetime
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
 
 # Load environment variables
 load_dotenv()
@@ -182,14 +187,38 @@ def playlist_creator(spotify):
 @app.route('/create_playlist', methods=['POST'])
 @spotify_auth_required
 def create_playlist(spotify):
-    data = request.json
-    track_uris = [track['uri'] for track in data['tracks']]
+    try:
+        data = request.json
+        logging.debug(f"Received data: {data}")
 
-    user_id = spotify.me()['id']
-    playlist = spotify.user_playlist_create(user_id, 'New Playlist', public=True)
-    spotify.user_playlist_add_tracks(user_id, playlist['id'], track_uris)
+        if not data or 'tracks' not in data:
+            logging.error("No track data provided")
+            return jsonify({'error': 'No track data provided'}), 400
 
-    return jsonify({'success': True})
+        track_uris = []
+        for track in data['tracks']:
+            if 'uri' in track:
+                track_uris.append(track['uri'])  # Correctly access the URI directly from the track object
+            else:
+                logging.error(f"Track missing 'uri': {track}")
+                return jsonify({'error': "Track data missing 'uri' key"}), 400
+
+        if not track_uris:
+            logging.error("No track URIs found")
+            return jsonify({'error': 'No track URIs found'}), 400
+
+        user_id = spotify.me()['id']
+        playlist = spotify.user_playlist_create(user_id, 'New Playlist', public=True)
+        spotify.user_playlist_add_tracks(user_id, playlist['id'], track_uris)
+        
+        return jsonify({'success': True})
+    except spotipy.exceptions.SpotifyException as e:
+        logging.error(f"Spotify API error: {e}")
+        return jsonify({'error': 'Spotify API error'}), 500
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return jsonify({'error': 'Unexpected error occurred'}), 500
+
 
 if __name__ == '__main__':
     app.run()
