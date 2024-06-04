@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playlist Builder</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
     <link rel="stylesheet" href="/static/css/playlist_builder.css">
 </head>
 <body>
@@ -14,55 +14,63 @@
         <h1>Playlist Builder</h1>
         <div class="form-group">
             <label for="playlist-select">Select Playlists:</label>
-            <select id="playlist-select" class="select2-multiple" multiple="multiple" style="width: 100%;">
-                {% for item in playlists['items'] %}
-                <option value="{{ item['id'] }}">{{ item['name'] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <h2>Filter by Metrics</h2>
-        <div class="slider-container">
-            <label class="slider-label" for="danceability-slider">Danceability:</label>
-            <div id="danceability-slider"></div>
+            <select id="playlist-select" multiple="multiple" style="width: 100%;"></select>
         </div>
         <div class="slider-container">
-            <label class="slider-label" for="tempo-slider">Tempo (BPM):</label>
-            <div id="tempo-slider"></div>
+            <div class="slider-wrapper">
+                <span class="slider-value" id="danceability-min"></span>
+                <label for="danceability-slider">Danceability</label>
+                <div id="danceability-slider"></div>
+                <span class="slider-value" id="danceability-max"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="slider-value" id="tempo-min"></span>
+                <label for="tempo-slider">Tempo</label>
+                <div id="tempo-slider"></div>
+                <span class="slider-value" id="tempo-max"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="slider-value" id="mood-min"></span>
+                <label for="mood-slider">Mood (Valence)</label>
+                <div id="mood-slider"></div>
+                <span class="slider-value" id="mood-max"></span>
+            </div>
+            <div class="slider-wrapper">
+                <span class="slider-value" id="energy-min"></span>
+                <label for="energy-slider">Energy</label>
+                <div id="energy-slider"></div>
+                <span class="slider-value" id="energy-max"></span>
+            </div>
         </div>
-        <div class="slider-container">
-            <label class="slider-label" for="mood-slider">Mood (Valence):</label>
-            <div id="mood-slider"></div>
-        </div>
-        <div class="slider-container">
-            <label class="slider-label" for="energy-slider">Energy:</label>
-            <div id="energy-slider"></div>
-        </div>
-        <div class="button-container">
-            <button id="create-playlist">Create Playlist</button>
-            <button id="reset">Reset</button>
-        </div>
-        <table id="tracks" class="display" style="width:100%; margin-top: 20px;">
+        <table id="tracks" class="display">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Artist</th>
+                    <th>Artists</th>
                     <th>Album</th>
-                    <th>Duration</th>
+                    <th>Duration (mins)</th>
                     <th>Danceability</th>
                     <th>Energy</th>
                     <th>Valence</th>
                     <th>Tempo</th>
+                    <th>Key</th>
+                    <th>Mode</th>
+                    <th>Time Signature</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Tracks will be populated here by JavaScript -->
-            </tbody>
+            <tbody></tbody>
         </table>
+        <div class="button-container">
+            <button id="create-playlist">Create Playlist</button>
+            <button id="reset">Reset</button>
+        </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
-    <script src="/static/js/playlist_builder.js"></script>
+    <script src="/static/js/initialization.js"></script>
+    <script src="/static/js/track_handling.js"></script>
+    <script src="/static/js/utils.js"></script>
 </body>
 </html>

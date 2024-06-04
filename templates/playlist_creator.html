@@ -13,26 +13,43 @@
         <div class="form-group">
             <label for="curve-select">Select Curve:</label>
             <select id="curve-select">
-                <option value="get_party_going">Get Party Going</option>
-                <option value="dark_to_light">Dark to Light</option>
-                <option value="high_energy_peaks">High Energy Peaks</option>
-                <option value="relaxed_evening">Relaxed Evening</option>
-                <option value="build_up_release">Build Up Release</option>
+                <option value="smooth_ascend">Smooth Ascend</option>
+                <option value="energetic_peaks">Energetic Peaks</option>
+                <option value="evening_chill">Evening Chill</option>
+                <option value="dynamic_rollercoaster">Dynamic Rollercoaster</option>
+                <option value="mellow_vibes">Mellow Vibes</option>
             </select>
         </div>
         <div class="chart-container">
             <canvas id="curveChart"></canvas>
         </div>
-        <ul id="track-list" class="track-list"></ul>
+        <table id="track-list" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Artists</th>
+                    <th>Album</th>
+                    <th>Duration (mins)</th>
+                    <th>Danceability</th>
+                    <th>Energy</th>
+                    <th>Valence</th>
+                    <th>Tempo</th>
+                    <th>Key</th>
+                    <th>Mode</th>
+                    <th>Time Signature</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
         <div class="button-container">
-            <button id="create-playlist">Create Playlist</button>
             <button id="back-to-builder">Back to Builder</button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-    <script src="/static/js/playlist_creator.js"></script>
+    <script src="/static/js/data_handling.js"></script>
+    <script src="/static/js/chart_setup.js"></script>
+    <script src="/static/js/event_handling.js"></script>
 </body>
 </html>
