@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <th>Key</th>
                     <th>Mode</th>
                     <th>Time Signature</th>
+                    <th>Flow Rating</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -39,17 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
         trackList.appendChild(table);
 
         const tbody = table.querySelector('tbody');
-        
-        // Sort tracks optimally
-        const sortedTracks = data.tracks.sort((a, b) => {
-            return a.audio_features.key - b.audio_features.key ||
-                   a.audio_features.mode - b.audio_features.mode ||
-                   a.audio_features.time_signature - b.audio_features.time_signature ||
-                   a.audio_features.energy - b.audio_features.energy ||
-                   a.audio_features.valence - b.audio_features.valence;
-        });
 
-        sortedTracks.forEach(track => {
+        // Sort tracks optimally and calculate flow ratings
+        const sortedTracks = dynamicSort(data.tracks);
+        let totalFlowRating = 0;
+        let flowRatingsCount = 0;
+
+        sortedTracks.forEach((track, index) => {
+            const flowRating = index === 0 ? 10 : calculateFlowRating(sortedTracks[index - 1], track);
+            totalFlowRating += flowRating;
+            flowRatingsCount += 1;
+
             const row = document.createElement('tr');
             row.dataset.track = encodeURIComponent(JSON.stringify(track)); // Add dataset attribute for later use
             row.innerHTML = `
@@ -64,11 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${getKeyMapping(track.audio_features.key)}</td>
                 <td>${getModeMapping(track.audio_features.mode)}</td>
                 <td>${track.audio_features.time_signature}</td>
+                <td>${flowRating.toFixed(2)}</td>
             `;
             tbody.appendChild(row);
         });
 
-        // Initialize DataTable with scrollable body
+        // Calculate and display average flow rating
+        const averageFlowRating = totalFlowRating / flowRatingsCount;
+        document.getElementById('playlist-score').innerText = averageFlowRating.toFixed(2);
+
+        // Initialize DataTable with scrollable body and disable sorting
         $(document).ready(function() {
             $('#track-list-table').DataTable({
                 scrollY: '420px',
@@ -76,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 paging: false,
                 searching: false,
                 info: true,
+                ordering: false, // Disable ordering
                 columnDefs: [
                     { targets: '_all', className: 'dt-left' }
                 ]
@@ -91,5 +98,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getModeMapping(mode) {
         return mode === 1 ? 'Major' : 'Minor';
+    }
+
+    function dynamicSort(tracks) {
+        // Group by key and mode
+        const groupedTracks = {};
+        tracks.forEach(track => {
+            const keyMode = `${track.audio_features.key}-${track.audio_features.mode}`;
+            if (!groupedTracks[keyMode]) {
+                groupedTracks[keyMode] = [];
+            }
+            groupedTracks[keyMode].push(track);
+        });
+
+        // Sort within each group by tempo and energy
+        for (const keyMode in groupedTracks) {
+            groupedTracks[keyMode].sort((a, b) => {
+                return a.audio_features.tempo - b.audio_features.tempo ||
+                       a.audio_features.energy - b.audio_features.energy;
+            });
+        }
+
+        // Combine all groups back into a single array
+        let sortedTracks = [];
+        for (const keyMode in groupedTracks) {
+            sortedTracks = sortedTracks.concat(groupedTracks[keyMode]);
+        }
+
+        return sortedTracks;
+    }
+
+    function calculateFlowRating(track1, track2) {
+        const keyDifference = Math.abs(track1.audio_features.key - track2.audio_features.key);
+        const modeDifference = track1.audio_features.mode === track2.audio_features.mode ? 0 : 1;
+        const tempoDifference = Math.abs(track1.audio_features.tempo - track2.audio_features.tempo);
+        const energyDifference = Math.abs(track1.audio_features.energy - track2.audio_features.energy);
+
+        // Calculate a flow rating based on the differences, scaled to 1-10
+        const flowRating = 10 - (keyDifference + modeDifference + (tempoDifference / 10) + (energyDifference * 10));
+        return Math.max(flowRating, 1); // Ensure the minimum rating is 1
     }
 });
