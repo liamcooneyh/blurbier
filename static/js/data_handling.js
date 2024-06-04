@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (data.tracks) {
         const table = document.createElement('table');
+        table.id = "track-list-table";
+        table.classList.add("display");
         table.innerHTML = `
             <thead>
                 <tr>
@@ -37,7 +39,17 @@ document.addEventListener('DOMContentLoaded', function() {
         trackList.appendChild(table);
 
         const tbody = table.querySelector('tbody');
-        data.tracks.forEach(track => {
+        
+        // Sort tracks optimally
+        const sortedTracks = data.tracks.sort((a, b) => {
+            return a.audio_features.key - b.audio_features.key ||
+                   a.audio_features.mode - b.audio_features.mode ||
+                   a.audio_features.time_signature - b.audio_features.time_signature ||
+                   a.audio_features.energy - b.audio_features.energy ||
+                   a.audio_features.valence - b.audio_features.valence;
+        });
+
+        sortedTracks.forEach(track => {
             const row = document.createElement('tr');
             row.dataset.track = encodeURIComponent(JSON.stringify(track)); // Add dataset attribute for later use
             row.innerHTML = `
@@ -54,6 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${track.audio_features.time_signature}</td>
             `;
             tbody.appendChild(row);
+        });
+
+        // Initialize DataTable with scrollable body
+        $(document).ready(function() {
+            $('#track-list-table').DataTable({
+                scrollY: '420px',
+                scrollCollapse: true,
+                paging: false,
+                searching: false,
+                info: true,
+                columnDefs: [
+                    { targets: '_all', className: 'dt-left' }
+                ]
+            });
         });
     }
 
